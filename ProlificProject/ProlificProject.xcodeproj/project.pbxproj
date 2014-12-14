@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB53F70E1A3D0AD100C5007D /* AddABookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB53F70D1A3D0AD100C5007D /* AddABookViewController.m */; };
+		CB53F7111A3D0AF500C5007D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB53F7101A3D0AF500C5007D /* DetailViewController.m */; };
 		CB619F121A22F4FC0065BBB3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB619F111A22F4FC0065BBB3 /* main.m */; };
 		CB619F151A22F4FC0065BBB3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB619F141A22F4FC0065BBB3 /* AppDelegate.m */; };
 		CB619F181A22F4FC0065BBB3 /* ProlificProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB619F161A22F4FC0065BBB3 /* ProlificProject.xcdatamodeld */; };
@@ -28,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB53F70C1A3D0AD100C5007D /* AddABookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddABookViewController.h; sourceTree = "<group>"; };
+		CB53F70D1A3D0AD100C5007D /* AddABookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddABookViewController.m; sourceTree = "<group>"; };
+		CB53F70F1A3D0AF500C5007D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		CB53F7101A3D0AF500C5007D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		CB619F0C1A22F4FC0065BBB3 /* ProlificProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProlificProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB619F101A22F4FC0065BBB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB619F111A22F4FC0065BBB3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -86,6 +92,10 @@
 				CB619F131A22F4FC0065BBB3 /* AppDelegate.h */,
 				CB619F141A22F4FC0065BBB3 /* AppDelegate.m */,
 				CB619F1C1A22F4FC0065BBB3 /* Main.storyboard */,
+				CB53F70F1A3D0AF500C5007D /* DetailViewController.h */,
+				CB53F7101A3D0AF500C5007D /* DetailViewController.m */,
+				CB53F70C1A3D0AD100C5007D /* AddABookViewController.h */,
+				CB53F70D1A3D0AD100C5007D /* AddABookViewController.m */,
 				CB619F381A22F5AD0065BBB3 /* BookListTableViewController.h */,
 				CB619F391A22F5AD0065BBB3 /* BookListTableViewController.m */,
 				CB619F1F1A22F4FC0065BBB3 /* Images.xcassets */,
@@ -226,6 +236,8 @@
 				CB619F181A22F4FC0065BBB3 /* ProlificProject.xcdatamodeld in Sources */,
 				CB619F121A22F4FC0065BBB3 /* main.m in Sources */,
 				CB619F3A1A22F5AD0065BBB3 /* BookListTableViewController.m in Sources */,
+				CB53F70E1A3D0AD100C5007D /* AddABookViewController.m in Sources */,
+				CB53F7111A3D0AF500C5007D /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +313,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -336,7 +348,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -418,6 +430,7 @@
 				CB619F341A22F4FC0065BBB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CB619F351A22F4FC0065BBB3 /* Build configuration list for PBXNativeTarget "ProlificProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +439,7 @@
 				CB619F371A22F4FC0065BBB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

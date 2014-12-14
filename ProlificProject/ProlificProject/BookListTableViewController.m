@@ -47,7 +47,8 @@
     
     // Configure the cell...
     
-    cell.textLabel.text = @"testing";
+    cell.textLabel.text = @"Book Title";
+    cell.detailTextLabel.text = @"Book Author(s)";
     
     return cell;
 }

@@ -1,34 +1,93 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DQv-oU-VfW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DQv-oU-VfW">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--AddA Book View Controller-->
         <scene sceneID="DY8-mH-TaC">
             <objects>
-                <viewController id="DI1-el-2aG" sceneMemberID="viewController">
+                <viewController id="DI1-el-2aG" customClass="AddABookViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Eq-W4-RZJ"/>
                         <viewControllerLayoutGuide type="bottom" id="vbt-q5-zFo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yjw-1F-ahC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2gV-4h-xTk">
+                            <navigationBar contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="2gV-4h-xTk">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Add Book" id="Si0-1W-GCd">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="PVJ-X8-Y1J"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="PVJ-X8-Y1J">
+                                            <connections>
+                                                <action selector="buttonDonePressed:" destination="DI1-el-2aG" id="O9J-XT-w5X"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dJS-d1-6ck">
+                                <rect key="frame" x="16" y="99" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mz6-zf-VeN">
+                                <rect key="frame" x="16" y="137" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Publisher" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dV3-zU-Ev3">
+                                <rect key="frame" x="16" y="175" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Categories" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ebQ-UB-h6B">
+                                <rect key="frame" x="16" y="213" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9s-KW-49U">
+                                <rect key="frame" x="16" y="251" width="568" height="30"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonSubmitPressed:" destination="DI1-el-2aG" eventType="touchUpInside" id="v0B-Vo-GM8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2gV-4h-xTk" firstAttribute="top" secondItem="yjw-1F-ahC" secondAttribute="top" id="4lL-It-8QJ"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="trailing" secondItem="yjw-1F-ahC" secondAttribute="trailingMargin" id="EIY-M0-pZt"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="leading" secondItem="dV3-zU-Ev3" secondAttribute="leading" id="ELi-y4-lii"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="top" secondItem="yjw-1F-ahC" secondAttribute="top" constant="213" id="HFt-F7-c1p"/>
+                            <constraint firstItem="2gV-4h-xTk" firstAttribute="leading" secondItem="yjw-1F-ahC" secondAttribute="leading" id="NKY-6f-l2F"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="trailing" secondItem="I9s-KW-49U" secondAttribute="trailing" id="Pob-qt-jDb"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="top" secondItem="dV3-zU-Ev3" secondAttribute="bottom" constant="8" symbolic="YES" id="X5T-3q-zRi"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="trailing" secondItem="Mz6-zf-VeN" secondAttribute="trailing" id="Xtw-aJ-88s"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="trailing" secondItem="dV3-zU-Ev3" secondAttribute="trailing" id="Yi6-Uv-q0m"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="leading" secondItem="I9s-KW-49U" secondAttribute="leading" id="ZU9-PG-WnJ"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="leading" secondItem="dJS-d1-6ck" secondAttribute="leading" id="ZxQ-9v-OuU"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="leading" secondItem="Mz6-zf-VeN" secondAttribute="leading" id="k2a-hd-TVo"/>
+                            <constraint firstItem="2gV-4h-xTk" firstAttribute="centerX" secondItem="dJS-d1-6ck" secondAttribute="centerX" id="kjQ-a6-D4z"/>
+                            <constraint firstItem="dJS-d1-6ck" firstAttribute="top" secondItem="2gV-4h-xTk" secondAttribute="bottom" constant="55" id="mB2-qz-Flh"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="trailing" secondItem="dJS-d1-6ck" secondAttribute="trailing" id="thf-MI-8Oh"/>
+                            <constraint firstItem="Mz6-zf-VeN" firstAttribute="top" secondItem="dJS-d1-6ck" secondAttribute="bottom" constant="8" symbolic="YES" id="uG0-mM-b1C"/>
+                            <constraint firstItem="I9s-KW-49U" firstAttribute="top" secondItem="ebQ-UB-h6B" secondAttribute="bottom" constant="8" symbolic="YES" id="uSs-kK-C0R"/>
+                            <constraint firstItem="ebQ-UB-h6B" firstAttribute="leading" secondItem="yjw-1F-ahC" secondAttribute="leadingMargin" id="x4v-am-kuu"/>
+                        </constraints>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="textFieldAuthor" destination="Mz6-zf-VeN" id="QE1-Lq-fKo"/>
+                        <outlet property="textFieldBookTitle" destination="dJS-d1-6ck" id="dOs-gG-9MI"/>
+                        <outlet property="textFieldCategories" destination="ebQ-UB-h6B" id="UjO-OA-4Ia"/>
+                        <outlet property="textFieldPublisher" destination="dV3-zU-Ev3" id="l5j-i9-RZD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJO-2R-EhN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -43,21 +102,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BookCell" textLabel="j7b-2q-NYo" style="IBUITableViewCellStyleDefault" id="5S6-w2-jzW">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BookCell" textLabel="j7b-2q-NYo" detailTextLabel="8bj-O6-lHR" style="IBUITableViewCellStyleSubtitle" id="5S6-w2-jzW">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5S6-w2-jzW" id="qay-1d-fch">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j7b-2q-NYo">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Book Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j7b-2q-NYo">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Book Author(s)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8bj-O6-lHR">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="EeG-6t-zvG" kind="showDetail" id="qC9-eU-ZiE"/>
+                                    <segue destination="EeG-6t-zvG" kind="show" id="qC9-eU-ZiE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -78,10 +143,10 @@
             </objects>
             <point key="canvasLocation" x="297" y="1097"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail-->
         <scene sceneID="LA6-ZO-SKU">
             <objects>
-                <viewController id="EeG-6t-zvG" sceneMemberID="viewController">
+                <viewController id="EeG-6t-zvG" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Oaf-tn-mYu"/>
                         <viewControllerLayoutGuide type="bottom" id="ggJ-ib-6Zp"/>
@@ -90,18 +155,114 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8xi-5v-3FI">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Detail" id="UbZ-yb-onn">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="cg0-mN-KTT"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1k-TA-M9m">
+                                <rect key="frame" x="16" y="90" width="568" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="dO4-6t-cFe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-7w-Ifz">
+                                <rect key="frame" x="16" y="119" width="568" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="L7j-CJ-1vM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Publisher" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Of1-iX-FjX">
+                                <rect key="frame" x="16" y="148" width="568" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="hhS-nY-3yr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Tags" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzS-mr-9UW">
+                                <rect key="frame" x="16" y="177" width="568" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="8Ez-HC-zQD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Last Checked Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scv-Np-rY1">
+                                <rect key="frame" x="16" y="206" width="568" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Mzf-Rc-zw0"/>
+                                    <constraint firstAttribute="height" constant="21" id="mjk-g0-itg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="mjk-g0-itg"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MuX-Aw-evi">
+                                <rect key="frame" x="16" y="235" width="568" height="30"/>
+                                <state key="normal" title="Checkout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonCheckoutPressed:" destination="EeG-6t-zvG" eventType="touchUpInside" id="veM-bH-Q9h"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p1k-TA-M9m" firstAttribute="leading" secondItem="XwU-7w-Ifz" secondAttribute="leading" id="7rv-B6-Akt"/>
+                            <constraint firstItem="MuX-Aw-evi" firstAttribute="top" secondItem="Scv-Np-rY1" secondAttribute="bottom" constant="8" symbolic="YES" id="8KM-YW-7Gj"/>
+                            <constraint firstItem="XwU-7w-Ifz" firstAttribute="trailing" secondItem="p1k-TA-M9m" secondAttribute="trailing" id="HFB-HA-k9I"/>
+                            <constraint firstItem="Of1-iX-FjX" firstAttribute="trailing" secondItem="XwU-7w-Ifz" secondAttribute="trailing" id="Kzv-Nb-hxa"/>
+                            <constraint firstItem="Of1-iX-FjX" firstAttribute="leading" secondItem="TzS-mr-9UW" secondAttribute="leading" id="QWC-1W-bET"/>
+                            <constraint firstItem="Scv-Np-rY1" firstAttribute="leading" secondItem="TzS-mr-9UW" secondAttribute="leading" id="SPd-Ln-YYe"/>
+                            <constraint firstItem="TzS-mr-9UW" firstAttribute="trailing" secondItem="Scv-Np-rY1" secondAttribute="trailing" id="SSM-u3-foh"/>
+                            <constraint firstItem="XwU-7w-Ifz" firstAttribute="top" secondItem="p1k-TA-M9m" secondAttribute="bottom" constant="8" symbolic="YES" id="aKl-Qy-F34"/>
+                            <constraint firstItem="Of1-iX-FjX" firstAttribute="top" secondItem="XwU-7w-Ifz" secondAttribute="bottom" constant="8" symbolic="YES" id="bbU-9d-Ku9"/>
+                            <constraint firstItem="TzS-mr-9UW" firstAttribute="trailing" secondItem="Of1-iX-FjX" secondAttribute="trailing" id="dk6-da-8R3"/>
+                            <constraint firstItem="Of1-iX-FjX" firstAttribute="leading" secondItem="Qcm-b6-XTm" secondAttribute="leadingMargin" id="f35-Fl-TDF"/>
+                            <constraint firstItem="Scv-Np-rY1" firstAttribute="top" secondItem="Qcm-b6-XTm" secondAttribute="top" constant="184" id="fMX-dk-wcb"/>
+                            <constraint firstItem="TzS-mr-9UW" firstAttribute="top" secondItem="Of1-iX-FjX" secondAttribute="bottom" constant="8" symbolic="YES" id="kcr-IM-4sz"/>
+                            <constraint firstItem="Scv-Np-rY1" firstAttribute="trailing" secondItem="MuX-Aw-evi" secondAttribute="trailing" id="keU-Bp-HYu"/>
+                            <constraint firstItem="p1k-TA-M9m" firstAttribute="top" secondItem="Oaf-tn-mYu" secondAttribute="bottom" constant="26" id="q3U-o4-MoR"/>
+                            <constraint firstItem="Scv-Np-rY1" firstAttribute="leading" secondItem="MuX-Aw-evi" secondAttribute="leading" id="rWC-f0-vnc"/>
+                            <constraint firstItem="p1k-TA-M9m" firstAttribute="trailing" secondItem="Qcm-b6-XTm" secondAttribute="trailingMargin" id="sfZ-se-NOj"/>
+                            <constraint firstItem="ggJ-ib-6Zp" firstAttribute="top" secondItem="MuX-Aw-evi" secondAttribute="bottom" constant="328" id="swd-2f-o2P"/>
+                            <constraint firstItem="XwU-7w-Ifz" firstAttribute="leading" secondItem="Of1-iX-FjX" secondAttribute="leading" id="uJr-CX-BaC"/>
+                            <constraint firstItem="Scv-Np-rY1" firstAttribute="top" secondItem="TzS-mr-9UW" secondAttribute="bottom" constant="8" symbolic="YES" id="yXR-xL-IXC"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="fMX-dk-wcb"/>
+                                <exclude reference="swd-2f-o2P"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Detail" id="GOK-1Y-uUs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="YAA-2Q-psa">
+                            <connections>
+                                <action selector="buttonSharePressed:" destination="EeG-6t-zvG" id="02F-mW-KVT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="labelBookAuthor" destination="XwU-7w-Ifz" id="OgB-JT-4lx"/>
+                        <outlet property="labelBookLastCheckedOut" destination="Scv-Np-rY1" id="kHO-8U-Hpx"/>
+                        <outlet property="labelBookPublisher" destination="Of1-iX-FjX" id="bas-Ha-1AF"/>
+                        <outlet property="labelBookTags" destination="TzS-mr-9UW" id="lxL-KK-RZ6"/>
+                        <outlet property="labelBookTitle" destination="p1k-TA-M9m" id="3rw-99-bYt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50G-Xp-Kdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
