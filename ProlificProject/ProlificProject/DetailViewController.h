@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController<UIAlertViewDelegate>
 
 
 - (IBAction)buttonSharePressed:(id)sender;
@@ -25,5 +25,7 @@
 
 - (IBAction)buttonCheckoutPressed:(id)sender;
 
+@property (copy, nonatomic) NSDictionary *selection;
+@property (weak, nonatomic) id delegate;
 
 @end

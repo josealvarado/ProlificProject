@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddABookViewController : UIViewController
+@interface AddABookViewController : UIViewController<UIAlertViewDelegate>{
+    NSMutableData *responseData;
+}
 
 - (IBAction)buttonDonePressed:(id)sender;
 

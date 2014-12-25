@@ -17,6 +17,7 @@
 		CB619F231A22F4FC0065BBB3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB619F211A22F4FC0065BBB3 /* LaunchScreen.xib */; };
 		CB619F2F1A22F4FC0065BBB3 /* ProlificProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CB619F2E1A22F4FC0065BBB3 /* ProlificProjectTests.m */; };
 		CB619F3A1A22F5AD0065BBB3 /* BookListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB619F391A22F5AD0065BBB3 /* BookListTableViewController.m */; };
+		CB65E73F1A3D9A12005E4622 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = CB65E73E1A3D9A12005E4622 /* Settings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		CB619F2E1A22F4FC0065BBB3 /* ProlificProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProlificProjectTests.m; sourceTree = "<group>"; };
 		CB619F381A22F5AD0065BBB3 /* BookListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListTableViewController.h; sourceTree = "<group>"; };
 		CB619F391A22F5AD0065BBB3 /* BookListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListTableViewController.m; sourceTree = "<group>"; };
+		CB65E73D1A3D9A12005E4622 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		CB65E73E1A3D9A12005E4622 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,8 @@
 				CB53F70D1A3D0AD100C5007D /* AddABookViewController.m */,
 				CB619F381A22F5AD0065BBB3 /* BookListTableViewController.h */,
 				CB619F391A22F5AD0065BBB3 /* BookListTableViewController.m */,
+				CB65E73D1A3D9A12005E4622 /* Settings.h */,
+				CB65E73E1A3D9A12005E4622 /* Settings.m */,
 				CB619F1F1A22F4FC0065BBB3 /* Images.xcassets */,
 				CB619F211A22F4FC0065BBB3 /* LaunchScreen.xib */,
 				CB619F161A22F4FC0065BBB3 /* ProlificProject.xcdatamodeld */,
@@ -238,6 +243,7 @@
 				CB619F3A1A22F5AD0065BBB3 /* BookListTableViewController.m in Sources */,
 				CB53F70E1A3D0AD100C5007D /* AddABookViewController.m in Sources */,
 				CB53F7111A3D0AF500C5007D /* DetailViewController.m in Sources */,
+				CB65E73F1A3D9A12005E4622 /* Settings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
