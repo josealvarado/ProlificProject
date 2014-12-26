@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "Settings.h"
 
 @interface DetailViewController ()
 
@@ -37,9 +38,54 @@
     
     
     if (lastCheckedOut == (id)[NSNull null] || lastCheckedOut == nil || lastCheckedOut.length == 0 || [lastCheckedOut isEqualToString:@"null"] || [lastCheckedOut isEqualToString:@"<null>"] ){
-        self.labelBookLastCheckedOut.text = @"Last Checked Out: ";
+        self.labelBookLastCheckedOut.text = @"";
     } else {
-        self.labelBookLastCheckedOut.text = [NSString stringWithFormat:@"Last Checked Out: %@ @ %@", lastCheckedOutBy, lastCheckedOut];
+        self.labelBookLastCheckedOut.text = [NSString stringWithFormat:@"%@ @ %@", lastCheckedOutBy, [self parseLastCheckedOut:lastCheckedOut]];
+    }
+}
+
+- (NSString *)parseLastCheckedOut:(NSString *) lastCheckedOut{
+    NSArray *dateTime = [lastCheckedOut componentsSeparatedByString:@" "];
+    NSArray *date = [[dateTime objectAtIndex:0] componentsSeparatedByString:@"-"];
+    
+    NSArray *time = [[dateTime objectAtIndex:1] componentsSeparatedByString:@":"];
+    
+    int hour = [[time objectAtIndex:0] intValue];
+    NSString *ampm = @"";
+    if (hour > 12) {
+        ampm = @"pm";
+    } else {
+        ampm = @"am";
+    }
+    
+    return [NSString stringWithFormat:@"%@ %@, %@ %@:%@%@", [self getMonth:[date objectAtIndex:1]], [date objectAtIndex:2], [date objectAtIndex:0], [time objectAtIndex:0], [time objectAtIndex:1], ampm];
+}
+
+- (NSString *)getMonth:(NSString *)month{
+    if ([month isEqualToString:@"01"]) {
+        return @"January";
+    } else if ([month isEqualToString:@"02"]) {
+        return @"February";
+    } else if ([month isEqualToString:@"03"]) {
+        return @"March";
+    } else if ([month isEqualToString:@"04"]) {
+        return @"April";
+    } else if ([month isEqualToString:@"05"]) {
+        return @"May";
+    } else if ([month isEqualToString:@"06"]) {
+        return @"June";
+    } else if ([month isEqualToString:@"07"]) {
+        return @"July";
+    } else if ([month isEqualToString:@"08"]) {
+        return @"August";
+    } else if ([month isEqualToString:@"09"]) {
+        return @"September";
+    } else if ([month isEqualToString:@"10"]) {
+        return @"October";
+    } else if ([month isEqualToString:@"11"]) {
+        return @"November";
+    } else {
+        return @"December";
     }
 }
 
@@ -54,6 +100,11 @@
 */
 
 - (IBAction)buttonSharePressed:(id)sender {
+    NSString *text = [NSString stringWithFormat:@"I just rented %@ using ProlificProject!!", self.labelBookTitle.text];
+    
+    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[text] applicationActivities:nil];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 - (IBAction)buttonCheckoutPressed:(id)sender {
     NSLog(@"here");
@@ -70,59 +121,18 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSString *text = [alertView textFieldAtIndex:0].text;
     
-    NSLog(@"%@", text);
-    
     if (text.length > 0) {
-        NSLog(@"Do someting");
+        NSDictionary *returnDictionary = [[Settings instance] doCurl:[self jsonTrackDataForUploadingToCloud:text] url:[NSString stringWithFormat:@"http://prolific-interview.herokuapp.com/546109c17fdcff000718ffce%@", [self.selection objectForKey:@"url"]] method:@"PUT"];
         
-        NSLog(@"d %@", [self.selection objectForKey:@"url"]);
-        
-        NSData *jsonData = [self jsonTrackDataForUploadingToCloud:text];  // Method shown below.
-        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", jsonString);  // To verify the jsonString.
-        
-        NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://prolific-interview.herokuapp.com/546109c17fdcff000718ffce%@", [self.selection objectForKey:@"url"]]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
-        
-        [postRequest setHTTPMethod:@"PUT"];
-        [postRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [postRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [postRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
-        [postRequest setHTTPBody:jsonData];
-        
-        NSURLResponse *response = nil;
-        NSError *requestError = nil;
-        NSData *returnData = [NSURLConnection sendSynchronousRequest:postRequest returningResponse:&response error:&requestError];
-        
-        if (requestError == nil) {
-            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-                if (statusCode != 200) {
-                    NSLog(@"Warning, status code of response was not 200, it was %ld", (long)statusCode);
-                }
-            }
-            
-            NSError *error;
-            NSDictionary *returnDictionary = [NSJSONSerialization JSONObjectWithData:returnData options:0 error:&error];
-            if (returnDictionary) {
-                NSLog(@"returnDictionary=%@", returnDictionary);
-                
-                UIAlertView *submitAlertView = [[UIAlertView alloc] initWithTitle: @"Checkout Completed" message: @"Enjoy the book" delegate:nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
-                [submitAlertView show];
-                
-            } else {
-                NSLog(@"error parsing JSON response: %@", error);
-                
-                NSString *returnString = [[NSString alloc] initWithBytes:[returnData bytes] length:[returnData length] encoding:NSUTF8StringEncoding];
-                NSLog(@"returnString: %@", returnString);
-            }
-        } else {
-            NSLog(@"NSURLConnection sendSynchronousRequest error: %@", requestError);
-            
+        if ([returnDictionary objectForKey:@"parseError"] || [returnDictionary objectForKey:@"requestError"]) {
             UIAlertView *submitAlertView = [[UIAlertView alloc] initWithTitle: @"Checkout Failed" message: @"Try again later" delegate:nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
+                [submitAlertView show];
+        } else {
+            self.labelBookLastCheckedOut.text = [NSString stringWithFormat:@"%@ @ %@", [returnDictionary objectForKey:@"lastCheckedOutBy"], [self parseLastCheckedOut:[returnDictionary objectForKey:@"lastCheckedOut"]]];
+            
+            UIAlertView *submitAlertView = [[UIAlertView alloc] initWithTitle: @"Checkout Completed" message: @"Enjoy the book" delegate:nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
             [submitAlertView show];
         }
-        
-        
     } else {
         NSLog(@"No text entered");
         UIAlertView *submitAlertView = [[UIAlertView alloc] initWithTitle: @"Checkout Cancelled" message: @"Missing name" delegate:nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
@@ -132,11 +142,9 @@
 
 -(NSData *)jsonTrackDataForUploadingToCloud:(NSString *) name
 {
-    // NSDictionary for testing.
     NSDictionary *trackDictionary = [NSDictionary dictionaryWithObjectsAndKeys:name, @"lastCheckedOutBy", nil];
     
     if ([NSJSONSerialization isValidJSONObject:trackDictionary]) {
-        
         NSError *error;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:trackDictionary options:NSJSONWritingPrettyPrinted error:&error];
         
@@ -148,7 +156,6 @@
         }
         
     } else {
-        
         NSLog(@"trackDictionary is not a valid JSON object.");
         return nil;
     }

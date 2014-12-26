@@ -14,4 +14,8 @@
 
 + (Settings *)instance;
 
+- (NSDictionary *)doPOST:(NSData *)jsonData url:(NSString *)url;
+
+- (NSDictionary *)doCurl:(NSData *)jsonData url:(NSString *)url method:(NSString *)method;
+
 @end

@@ -23,8 +23,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    NSLog(@"load");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,39 +54,7 @@
         
         [Settings instance].books = books;
     }
-    
-    ///////////////////////
-    
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    NSURL *url = [NSURL URLWithString:@"http://prolific-interview.herokuapp.com/546109c17fdcff000718ffce/books"];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-//    
-//    [request setHTTPMethod: @"GET"];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    
-//    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//        // The server answers with an error because it doesn't receive the params
-//        
-//        NSLog(@"error %@", error);
-//        
-//        NSMutableArray *books = [NSJSONSerialization JSONObjectWithData:data
-//                                                                         options:NSJSONReadingMutableContainers
-//                                                                           error:nil];
-//        NSLog(@"Count %lu", (unsigned long)[books count]);
-//        
-//        
-//                [Settings instance].books = books;
-//        
-//    }];
-//    [postDataTask resume];
-    
-//    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
-
-//- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
-//    return nil;
-//}
 
 #pragma mark - Table view data source
 
@@ -114,7 +80,6 @@
     return cell;
 }
 
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -123,17 +88,29 @@
 }
 */
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NSDictionary *book = [[Settings instance].books objectAtIndex:indexPath.row];
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:book options:NSJSONWritingPrettyPrinted error:&error];
+        
+        NSDictionary *returnDictionary = [[Settings instance] doCurl:jsonData url:[NSString stringWithFormat:@"http://prolific-interview.herokuapp.com/546109c17fdcff000718ffce%@", [book objectForKey:@"url"]] method:@"DELETE"];
+        
+        if ([returnDictionary objectForKey:@"parseError"] || [returnDictionary objectForKey:@"requestError"]) {
+            UIAlertView *submitAlertView = [[UIAlertView alloc] initWithTitle: @"Deletion Failed" message: @"Try again later" delegate:nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
+            [submitAlertView show];
+        } else {
+            
+            [[Settings instance].books removeObjectAtIndex:indexPath.row];
+            
+            [tableView reloadData];
+        }
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.
@@ -149,6 +126,10 @@
 }
 */
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60.0;
+}
 
 #pragma mark - Navigation
 
@@ -159,25 +140,14 @@
 
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForCell:sender];
     
-    NSLog(@"mmm");
-    
     UIViewController *destination = segue.destinationViewController;
     if ([destination respondsToSelector:@selector(setDelegate:)]) {
         [destination setValue:self forKey:@"delegate"];
         
-        
-        NSLog(@"here");
         NSDictionary *book =[Settings instance].books[selectedIndexPath.row];
         
         [destination setValue:book forKey:@"selection"];
     }
-    
-//    if ([destination respondsToSelector:@selector(setSelection:)]) {
-//        NSDictionary *selection = @{@"Contact": [Settings instance].books[selectedIndexPath.row]};
-//        
-//        [segue.destinationViewController setValue:selection forKey:@"selection"];
-//    }
-    
 }
 
 
