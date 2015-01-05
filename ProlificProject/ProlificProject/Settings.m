@@ -43,7 +43,7 @@
     if (requestError == nil) {
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-            if (statusCode != 200) {
+            if (!(statusCode >= 200 && statusCode < 300)) {
                 NSLog(@"Warning, status code of response was not 200, it was %ld", (long)statusCode);
             }
         }
@@ -57,7 +57,9 @@
             
             NSString *returnString = [[NSString alloc] initWithBytes:[returnData bytes] length:[returnData length] encoding:NSUTF8StringEncoding];
             NSLog(@"returnString: %@", returnString);
-            returnDictionary = [NSDictionary dictionaryWithObjectsAndKeys:returnString, @"parseError", nil];
+            if (returnString.length > 0) {
+                returnDictionary = [NSDictionary dictionaryWithObjectsAndKeys:returnString, @"parseError", nil];
+            }
         }
     } else {
         NSLog(@"NSURLConnection sendSynchronousRequest error: %@", requestError);
@@ -89,7 +91,8 @@
     if (requestError == nil) {
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-            if (statusCode != 200) {
+//            int status = statusCode;
+            if (!(statusCode >= 200 && statusCode < 300)) {
                 NSLog(@"Warning, status code of response was not 200, it was %ld", (long)statusCode);
             }
         }
@@ -103,7 +106,9 @@
             
             NSString *returnString = [[NSString alloc] initWithBytes:[returnData bytes] length:[returnData length] encoding:NSUTF8StringEncoding];
             NSLog(@"returnString: %@", returnString);
-            returnDictionary = [NSDictionary dictionaryWithObjectsAndKeys:returnString, @"parseError", nil];
+            if (returnString.length > 0) {
+                returnDictionary = [NSDictionary dictionaryWithObjectsAndKeys:returnString, @"parseError", nil];
+            }
         }
     } else {
         NSLog(@"NSURLConnection sendSynchronousRequest error: %@", requestError);
